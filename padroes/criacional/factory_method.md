@@ -14,7 +14,7 @@ Como resultado, o código-fonte fica sujo, repleto de condicionais que alteram o
 
 ## Solução
 
-O padrão ***Factory Abstract*** apresenta como solução a alteração das chamadas diretas para construtores para chamadas de um método da **fábrica** especial. Os objetos ainda são criados com construtores, que são invocados dentro do método da **fábrica**. Os **objetos** retornados pelo **método** da **fábrica** são chamados de **produtos**.
+O padrão ***Factory Method*** apresenta como solução a alteração das chamadas diretas para construtores para chamadas de um método da **fábrica** especial. Os objetos ainda são criados com construtores, que são invocados dentro do método da **fábrica**. Os **objetos** retornados pelo **método** da **fábrica** são chamados de **produtos**.
 
 Em um primeiro momento, tal mudança parece pouco justificável, pelo fato de apenas mudar a chamado do construtor para outra parte do código. No entanto, é possível sobrescrever o método fábrica em uma subclasse e alterar a classe de produtos que estão sendo instanciados.
 
@@ -24,16 +24,18 @@ No exemplo de logística, uma refatoração seria com as classes `Caminhão` e `
 
 A imagem a seguir apresenta a arquitetura apresentada para a solução:
 
-<html>
-<img src="../../imagens/criacional/factory_method.png" width="400" alt="Factory Method">
-<p><b>Figura 1</b>: Arquitetura da solução para o <i>Factory Method</i>.</p>
-</html>
+A imagem apresenta a visão geral do ***Factory Method***:
 
 A interface *Product* descreve um padrão comum à todos os objetos que podem ser produzidos pelo *Creator*, no exemplo, o método *doStuff()*. Os **Produtos Concretos** são implementações diferentes da interface do **Produto**.
 
 A classe *Creator* representa o **Criador**, que declara o método fábrica responsável por retornar novos objetos do produto. O tipo de retorno do método *createProduct()* deve ser a interface *Product*. O método *createProduct()* pode ser declarado como abstrato para forçar as subclasses a implementarem sua própria versão.
 
 Os **Criadores Concretos** sobrescrevem o método fábrica base para retornar um tipo diferente de **Produto**. O método fábrica não precisa retornar novas instâncias todo o tempo, mas retornar objetos armazenados em *cache* ou de outra fonte.
+
+<html>
+<img src="../../imagens/criacional/factory_method/factory_method_1.png" width="400" alt="Factory Method">
+<p><b>Figura 1</b>: Solução proposta com o <i>Factory Method</i>.</p>
+</html>
 
 ## Implementação
 
@@ -44,6 +46,11 @@ A implementação do ***Factory Method*** não é definida por um algoritmo, mas
 - No código da **classe criadora** encontre todas as referências aos construtores de **produtos**. Caso necessário, adicione o atributo de referência ao tipo para diferenciar os **criadores**.
 - Para cada tipo de **produto**, crie uma **classe criadora** respectiva que estende a **classe criadora base** e sobrescreva o **método fábrica**. Em caso de vários tipos de produtos, organize em subclasses que agrupem tipos similares.
 - Caso o **método fábrica** da **classe criadora base** ficar vazio, é recomendado torná-lo abstrato. Caso contrário, é possível deixá-lo com um comportamento padrão.
+
+<html>
+<img src="../../imagens/criacional/factory_method/factory_method_2.png" width="400" alt="Factory Method">
+<p><b>Figura 2</b>: Diagrama com a definição do <i>Factory Method</i>.</p>
+</html>
 
 Portanto, com o ***Factory Method*** é definido um **método fábrica** para a instanciação de objetos ao invés de chamadas diretas para os construtores. A definição classe em Python é apresentada a seguir.
 
@@ -199,6 +206,11 @@ Com a refatoração, temos os seguintes benefícios:
 - **Centralização**: a **classe criadora** (*DeliveryFactory*) é responsável por acoplar a lógica para a instanciação de objetos;.
 - **Flexibilidade**: um novo tipo de entrega exige a implementação de uma nova classe e a respectiva inclusão de código na fábrica (*DeliveryFactory*).
 - **Manutenção**: código modular, com a lógica de criação isolada na classe *DeliveryFactory*.
+
+<html>
+<img src="../../imagens/criacional/factory_method/factory_method_3.png" width="400" alt="Factory Method">
+<p><b>Figura 3</b>: Visão geral do problema e solução proposta.</p>
+</html>
 
 ## Discussão
 
