@@ -47,6 +47,8 @@ A implementação do ***Factory Method*** não é definida por um algoritmo, mas
 - Para cada tipo de **produto**, crie uma **classe criadora** respectiva que estende a **classe criadora base** e sobrescreva o **método fábrica**. Em caso de vários tipos de produtos, organize em subclasses que agrupem tipos similares.
 - Caso o **método fábrica** da **classe criadora base** ficar vazio, é recomendado torná-lo abstrato. Caso contrário, é possível deixá-lo com um comportamento padrão.
 
+A Figura 2 apresenta a arquitetura proposta pelo ***Factory Method***:
+
 <html>
 <img src="../../imagens/criacional/factory_method/factory_method_2.png" width="400" alt="Factory Method">
 <p><b>Figura 2</b>: Diagrama com a definição do <i>Factory Method</i>.</p>
@@ -220,8 +222,6 @@ O ***Factory Method*** é adequado quando é necessário fornecer aos usuários 
 
 O ***Factory Method*** é útil para economizar recursos do sistema reutilizando objetos existentes. Requisito comum em sistemas com conexões com banco de dados, arquivos extensos de texto, etc. A abstração da instanciação de objetos extensos e a reutilização desses objetos é conveniente com o uso do método fábrica.
 
-## Conclusão
-
 Como benefícios é possivel destacar:
 
 - **Menor acoplamento** entre o **criador** e os **produtos concretos**.
@@ -229,3 +229,8 @@ Como benefícios é possivel destacar:
 - **Princípio aberto/fechado**: a introdução de novos tipos de produtos não interfere no código existente.
 
 Porém, é preciso atenção para não tornar o código mais complexo que o necessário. Em especial, na **criação** de **subclasses** para o **produto** e **criador**. O melhor cenário é a adição de novas classes em uma arquitetura definida e organizada.
+
+## Conclusão
+
+O ***Factory Method*** um padrão de projeto criacional, que resolve o problema de criar objetos de produtos sem especificar suas classes concretas. O ***Factory Method*** define um método, que deve ser usado para criar objetos em vez da chamada direta ao construtor.
+

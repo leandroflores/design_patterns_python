@@ -302,6 +302,8 @@ O padrão ***Builder*** por permitir a criação por etapas é muito indicado na
 
 ## Conclusão
 
+O ***Builder*** é um padrão de projeto criacional, que permite a construção de objetos complexos passo a passo. O ***Builder*** não exige que os produtos tenham uma interface comum. Isso torna possível produzir produtos diferentes usando o mesmo processo de construção.
+
 As principais vantagens do padrão de projeto ***Builder*** são:
 - Construir objetos por etapas, adiando etapas de construção e possibilidade de chamadas recursivas.
 - Reutilizar o mesmo código de construção para várias representações de produtos.

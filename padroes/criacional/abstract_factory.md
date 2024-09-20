@@ -44,6 +44,8 @@ A implementação do ***Abstract Factory*** não é definida por um algoritmo, m
 - A **Fábrica Abstrata** declara um conjunto de métodos para a criação de cada um dos **Produtos Abstratos**.
 - As **Fábricas Concretas** implementam os métodos de criação da **Fábrica Abstrata**. Cada **Fábrica Concreta** corresponde à uma variante específica de produtos.
 
+A Figura 3 apresenta a solução arquitetural proposta pelo ***Abstract Factory***.
+
 <html>
 <img src="../../imagens/criacional/abstract_factory/abstract_factory_3.png" width="400" alt="Abstract Factory">
 <p><b>Figura 3</b>: Arquitetura do <i>Abstract Factory</i>.</p>
@@ -166,12 +168,12 @@ def app():
     db = "MySQL"
 
     if db == "MySQL":
-        connetion = MySQLConnection()
+        connection = MySQLConnection()
         connection.connect()
         command = MySQLCommand()
         command.execute("SELECT * FROM users;")
     elif db == "MongoDB":
-        connetion = MongoDBConnection()
+        connection = MongoDBConnection()
         connection.connect()
         command = MongoDBCommand()
         command.execute("{ find: 'users' }")
@@ -247,6 +249,7 @@ class MongoDBFactory(DBFactory):
 
 
 
+
 def app():
     db = "MongoDB"
 
@@ -255,11 +258,12 @@ def app():
     elif db == "MongoDB":
         factory = MongoDBFactory()
 
-    connection = factory.connect()    
+    connection = factory.create_connection()
     connection.connect()
 
-    command = factory.command()
+    command = factory.create_command()
     command.execute("{ find: 'users' }")
+
 
 ```
 
