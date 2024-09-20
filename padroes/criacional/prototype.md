@@ -10,34 +10,32 @@ Considere a necessidade de criar a cópia exata de um objeto. O primeiro passo �
 
 Porém, considere o cenário de atributos privados, em que não é possível acessá-los fora do escopo do próprio objeto.
 
-<html>
-<img src="../../imagens/criacional/prototype/prototype_1.png" width="400" alt="Factory Method">
-<p><b>Figura 1</b>: Representação de diferentes combinações possíveis para uma casa.</p>
-</html>
+A Figura 1 apresenta uma metáfora sobre as dificuldades de fazer uma cópia de um objeto.
 
-Outro problema é que a necessidade de saber exatamente a classe do objeto original para criar uma cópia, configura uma dependência. Em casos que a dependência segue o tipo de uma interface, é impossível saber a classe exatamente.
+![Metáfora de cópia de objetos](../../imagens/prototype/prototype_1.png)
+**Figura 1:** Exemplo de problema na cópia de objetos.
+
+Outro problema é que a necessidade de saber exatamente a classe do objeto original para criar uma cópia, configura uma dependência. Em casos que a dependência segue o tipo de uma interface, é impossível saber a classe exata.
 
 ## Solução
 
 O padrão ***Prototype*** transmite o processo de cópia para o próprio objeto a ser clonado. O padrão declara uma interface comum para todas as classes que podem ter objetos a ser clonados. Essa interface permite a chamada do método que faz a cópia, sem acoplar seu código à classe do objeto. Normalmente, a interface possui um único método: `clonar`.
 
-A implementação do método `clonar` é muito parecida em todas as classes. O método cria um objeto da classe atual e carrega todos os valores dos atributos para o novo objeto, incluindo os atributos privados da classe. Um objeto que suporta clonagem é chamado de **protótipo**. Para objetos extensos, com muitos atributos, torná-lo um **protótipo** é uma alternativa adequada.
-
+A implementação do método `clonar` é muito parecida em todas as classes. O método cria um objeto da classe atual e copia todos os valores dos atributos para o novo objeto, incluindo os atributos privados da classe. Um objeto que suporta clonagem é chamado de **protótipo**. Para objetos extensos, com muitos atributos, torná-lo um **protótipo** é uma alternativa viável.
 
 ## Implementação
 
-A implementação do ***Prototype*** não é definida por um algoritmo, mas pode ser descrita por alguns passos:
+A aplicação do ***Prototype*** é descrito pelas seguintes etapas:
+
 - Crie uma interface protótipo e declare o método `clonar`.
-- A classe protótipo deve definir um construtor alternativo que aceita um objeto daquela classe como argumento. O construtor deve copiar os valores de todos os campos definidos na classe do objeto passado para a nova instância recém criada.
+- A classe protótipo deve definir um construtor alternativo que aceita um objeto daquela classe como argumento. O construtor deve copiar os valores de todos os atributos definidos na classe do objeto passado para a nova instância.
 - O método de clonagem executa a instanciação com a versão do protótipo do construtor. Toda clase deve sobrescrever o método `clonar` e usar sua proṕria classe, para não resultar em uma clonagem da classe superior.
-- Caso necessário, crie um registro protótipo centralizado para armazenar um conjunto de protótipos que são usados com frequência. O registro pode ser usado com uma classe *factory* ou método estático. É possível associar um valor (*String*) para retornar uma cópia do protótipo para o cliente. Assim, não é mais utilizado chamadas diretas para o constutor, e sim para o método *factory*.
+- Caso necessário, crie um registro protótipo centralizado para armazenar um conjunto de protótipos que são usados com frequência. O registro pode ser usado com uma classe *factory* ou método estático. É possível associar um valor (*String*) para retornar uma cópia do protótipo para o cliente.
 
-A Figura 2 apresenta o diagrama com a solução do padrão ***Prototype***.
+A Figura 2 apresenta a arquitetura do padrão ***Prototype***.
 
-<html>
-<img src="../../imagens/criacional/prototype/prototype_2.png" width="400" alt="Prototype">
-<p><b>Figura 2</b>: Diagrama com a definição do <i>Prototype</i>.</p>
-</html>
+![Solução com ***Prototype***](../../imagens/criacional/prototype/prototype_2.png)
+**Figura 2:** Arquitetura do padrão ***Prototype***.
 
 A interface ***Prototype*** declara os métodos de clonagem. A classe **Protótipo Concreta** implementa o método de clonagem. Além da cópia dos atributos do objeto original, pode incluir a cópia específica de outros objetos relacionados. O **Cliente** pode produzir uma cópia de qualquer objeto que implementa a interface do **Protótipo**.
 
@@ -149,15 +147,14 @@ print(car_2)
 
 No exemplo apresentado, a instanciação é mais simplicada pelo fato de partir de uma base pré-definida por meio do ***Prototype***.
 
-
 ## Discussão
 
-O padrão ***Prototype*** permite o processo de cópia de objetos sem acoplar codigo às classes concretas. A principal vantagem é se livrar de códigos de inicialização repetidos por protótipos pré-definidos. 
+O padrão ***Prototype*** permite o processo de cópia de objetos sem acoplar codigo às classes concretas. A principal vantagem é se livrar de códigos de inicialização repetidos por protótipos pré-definidos.
 
 Em caso de objetos mais complexos, é possível fazer o processo de forma mais específica, sendo possível especializar implementações por meio de herança.
 
 ## Conclusão
 
-O ***Prototype*** é um padrão de projeto criacional que permite a **clonagem** de objetos, mesmo complexos, sem acoplamento à suas classes específicas.
+O ***Prototype*** é um padrão de projeto criacional que permite a clonagem de objetos, mesmo complexos, sem acoplamento à suas classes específicas.
 
 Todas as **Classes de Protótipo** (***Prototypes***) devem ter uma interface comum que declare o método de clonagem do objeto, mesmo que as classes concretas sejam desconhecidas. Objetos protótipos podem produzir cópias completas, pois objetos da mesma classe podem acessar atributos privados.

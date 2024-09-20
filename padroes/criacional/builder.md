@@ -6,49 +6,46 @@ O ***Builder*** é um **padrão de projeto criacional** que permite a construç�
 
 ## Problema
 
-Considere um objeto complexo que necessite de uma inicialização passo a passo trabalhosa de muitos atributos e objetos agrupados. Normalmente, essa inicialização é feita por meio de parâmetros de um método construtor. Ou pior: espalhado pelo código cliente.
+Considere um objeto complexo que necessite de uma inicialização passo a passo trabalhosa de muitos atributos e objetos agrupados. Normalmente, essa inicialização é feita por meio de parâmetros de um método construtor. Ou pior: espalhado pelo código cliente. A Figura 1 apresenta possíveis combinação para a construção de novas casas.
 
-<html>
-<img src="../../imagens/criacional/builder/builder_1.png" width="400" alt="Factory Method">
-<p><b>Figura 1</b>: Representação de diferentes combinações possíveis para uma casa.</p>
-</html>
+![Exemplo ***Builder***](../../imagens/criacional/builder/builder_1.png)
+**Figura 1:** Representação de diferentes combinações possíveis para uma casa.
 
-Considere o cenário de um objeto `Casa`. Para construir uma `Casa` é preciso construir as paredes, piso, portas, janelas e o teto. No entanto, é possível um objeto `Casa` possuir jardim, piscina, garagem. A solução mais simples seria estender a classe base `Casa` e criar um subconjunto de casas com seu próprio construtor com seus parâmetros próprios. No entanto, isso pode resultar em um número extenso de subclasses e qualquer novo parâmetro exige uma alteração mais delicada na hierarquia.
+Considere o cenário de um objeto `Casa`. Para construir uma `Casa` é preciso construir as paredes, piso, portas, janelas e o teto. No entanto, é possível um objeto `Casa` possuir jardim, piscina, garagem. A solução mais simples seria estender a classe base `Casa` e criar um subconjunto de casas com seu próprio construtor com seus parâmetros próprios. No entanto, isso pode resultar em um número extenso de subclasses e qualquer novo parâmetro exige uma alteração mais delicada na classe genérica da hierarquia.
 
 Uma outra alternativa não fazendo uso de herança, seria criar um construtor gigante na classe base `Casa`, com todos os possíveis parâmetros para todos os tipos de casa. Porém, essa alternativa resulta em um novo problema: parte dos parâmetros não é usada e o construtor passa a ter muitos parâmetros desnecessários.
 
 ## Solução
 
-O padrão ***Builder*** apresenta a extração do código de construção de objetos para fora da própria classe para uma classe separada chamada ***builer***. O termo ***builder*** refere-se exatamente à ***construtor***, mas é completamente diferente do método construtor.
+O padrão ***Builder*** apresenta a extração do código de construção de objetos para fora da própria classe para uma classe separada chamada ***builer***. O termo ***builder*** refere-se exatamente à ***construtor***, mas como explicado, o conceito é completamente diferente do método construtor.
 
-O padrão ***Builder*** organiza a construção de objetos em uma série de etapas. No exemplo da `Casa`, podemos organizar em métodos: `construirParedes`, `assentarPiso`, etc. Portanto, para criar um objeto, é necessário executar uma série de etapas do objeto ***builder***. A parte importante é a possibilidade de executar somente as etapas pertinentes ao objeto.
+O padrão ***Builder*** organiza a construção de objetos em uma série de etapas. No exemplo da `Casa`, podemos organizar em métodos: `construirParedes`, `assentarPiso`, etc. Portanto, para criar um objeto, é necessário executar uma série de etapas do objeto ***builder***. A parte importante é a possibilidade de executar somente as etapas pertinentes para a criação do objeto.
 
-Algumas partes da construção podem possuir implementações diferentes na criação de objetos. Tal contexto permite a criação de diferentes ***builders*** com os mesmos métodos, mas implementados de forma diferente. Assim, esse ***builder*** pode ser usado em conjunto no processo de construção de uma casa. No exemplo da `Casa`, imagine um ***builder*** que construa de madeira e vidro, um outro ***builder*** que constrói com pedra e ferro e um terceiro ***builder*** que constrói com ouro e prata. Ao chamar o mesmo conjunto de etapas que resulta em três casas distintas.
+Algumas partes da construção podem possuir implementações diferentes na criação de objetos. Tal contexto permite a criação de diferentes ***builders*** com os mesmos métodos, mas implementados de forma diferente. Assim, esse ***builder*** pode ser usado em conjunto no processo de construção de uma casa. No exemplo da `Casa`, imagine um ***builder*** que construa uma casa de madeira e vidro, um outro ***builder*** que constrói uma casa com pedra e ferro e um terceiro ***builder*** que constrói uma casa com ouro e prata. Ao chamar o mesmo conjunto de etapas que resulta em três casas distintas.
 
-Uma variação do padrão ***Builder*** é o uso de uma classe **Diretor**. É possível extrair uma série de chamadas para a classe **diretor**. A **Classe Diretor** define a ordem de execução das etapas, enquanto as **classes *builder*** implementa as etapas.
+Uma variação do padrão ***Builder*** é o uso da classe **Diretor**. É possível extrair uma série de chamadas para a classe **diretor**. A **Classe Diretor** define a ordem de execução das etapas, enquanto as **classes *builder*** implementa as etapas.
 
 O uso da **Classe Diretor** é optativo, porém é interessante por centralizar o processamento (reutilização) e por esconder os detalhes da construção do produto do código cliente (encapsulamento). O cliente precisa apenas passar o ***builder*** para o **diretor**, inicializar a construção com o **diretor** e esperar o resultado.
 
 ## Implementação
 
-A implementação do ***Builder*** não é definida por um algoritmo, mas pode ser descrita por alguns passos:
-- Abstraia as etapas claras para a construção de diferentes classes de produto.
+A implementação do ***Builder*** pode ser organizada pelos seguintes passos:
+
+- Abstraia as etapas obrigatórias para a construção de diferentes classes de produto.
 - Declare essas etapas na **interface *Builder***.
-- Crie uma classe ***Builder* Concreta** para cada representação do produto e implemente suas etapas de construção e o resultado. O resultado da construção pode ser definido no ***Builder* Base** quando os produtos são da mesma hierarquia. Caso contrário, é necessário declarar o método do resultado nos diferentes ***Builders** Concretos*.
+- Crie uma classe ***Builder* Concreta** para cada representação do produto e implemente suas etapas de construção. O resultado da construção pode ser definido no ***Builder* Base** quando os produtos são da mesma hierarquia. Caso contrário, é necessário declarar o método do resultado nos diferentes ***Builders** Concretos*.
 - Considere a possibilidade de agrupar os passos de construção para a **Classe Diretor**.
 
 A Figura 2 apresenta o diagrama com a solução do padrão ***Builder***.
 
-<html>
-<img src="../../imagens/criacional/builder/builder_2.png" width="400" alt="Builder">
-<p><b>Figura 2</b>: Diagrama com a definição do <i>Builder</i>.</p>
-</html>
+![Arquitetura ***Builder***](../../imagens/criacional/builder/builder_2.png)
+**Figura 2:** Arquitetura do padrão ***Builder***.
 
 A interface ***Builder*** deve declarar as etapas de construção do produto, que são comuns a todos os tipos de ***buiders***. ***Builders* Concretos** fornecem diferentes implementações para as etapas de construção. ***Builders* Concretos** podem produzir produtos que não seguem a interface em comum.
 
 **Produtos** são os objetos resultantes dos ***builders* concretos**. Os **Produtos** construídos por diferentes ***builders*** não precisam pertencer à mesma interface ou hierarquia de classe.
 
-A **Classe Diretor** define a ordem na qual as etapas da construção são chamadas. É possível criar e reutilizar configurações específicas de produtos. O **Cliente** deve associar um dos ***builders*** com a **Classe Diretor**. Normalmente, é feito por meio dos parâmetros do construtor do diretor, existindo um único ***builder*** para todas as construções. 
+A **Classe Diretor** define a ordem na qual as etapas da construção são chamadas. É possível criar e reutilizar configurações específicas de produtos. O **Cliente** deve associar um dos ***builders*** com a **Classe Diretor**. Normalmente, é feito por meio dos parâmetros do construtor do diretor, existindo um único ***builder*** para todas as construções.
 
 A implementação em Python segue abaixo:
 
@@ -198,7 +195,8 @@ print(pizza_1)
 print(pizza_2)
 
 ```
-No exemplo apresentado, a criação de uma pizza requer todos os parâmetros passados para o construtor. A confusão é causada pelos pedidos maiores e mais complexos, além da falta de flexibilidade por exigir a passagem de parâmetros estritamente definida. 
+
+No exemplo apresentado, a criação de uma pizza requer todos os parâmetros passados para o construtor. A confusão é causada pelos pedidos maiores e mais complexos, além da falta de flexibilidade, por exigir a passagem de parâmetros previamente definida.
 
 O exemplo a seguir apresenta a refatoração com o padrão ***Builder***:
 
@@ -289,25 +287,24 @@ print(pizza_2)
 
 ```
 
-No exemplo apresentado, o ***Builder*** atua como o construtor do objeto, reduzindo a complexidade na chamada para o construtor diretamente pelo cliente.
+No exemplo apresentado, o ***Builder*** atua como o construtor do objeto, reduzindo a complexidade da chamada para o construtor diretamente pelo cliente.
 
 ## Discussão
 
-O padrão ***Builder*** é muito aplicado em situações com um número extenso de parâmetros para o construtor. A chamada de construtores com muitos parâmetros. Este cenário passa a ser incoveniente pelo fato de exigir sobrecarga de construtores ou uso de parâmetros desnecessários, com versões alternativas de parâmetros de acordo com o produto final. O fato do padrão ***Builder*** construir objetos em etapas, não é necessário fazer uso de construtores com múltiplos parâmetros.
+O padrão ***Builder*** é muito aplicado em situações com um número extenso de parâmetros para o construtor. A chamada de construtores com muitos parâmetros não é uma solução eficiente. Este cenário passa a ser incoveniente pelo fato de exigir sobrecarga de construtores ou uso de parâmetros desnecessários, com versões alternativas de parâmetros de acordo com o produto final. Pelo fato do padrão ***Builder*** construir objetos em etapas, não é necessário fazer uso de construtores com múltiplos parâmetros.
 
 O padrão ***Builder*** permite a criação de diferentes representações do mesmo produto, em especial, quando existe uma série de etapas semelhantes para a criação. Isso é possível pela interface base do ***Builder*** definir todas as etapas possíveis, e os ***builders* concretos** são responsáveis por definir os detalhes da etapa.
 
 O padrão ***Builder*** por permitir a criação por etapas é muito indicado na construção de objetos complexos. É possível adiar a execução de etapas da interface base sem quebrar o produto final. Por meio da recursão, é possível construir árvores de objetos. O ***Builder*** não retorna o produto final até o processo ser concluído, previnindo o retorno de um produto final incompleto.
 
-
 ## Conclusão
 
-O ***Builder*** é um padrão de projeto criacional, que permite a construção de objetos complexos passo a passo. O ***Builder*** não exige que os produtos tenham uma interface comum. Isso torna possível produzir produtos diferentes usando o mesmo processo de construção.
+O ***Builder*** é um padrão de projeto criacional, que permite a construção de objetos complexos em etapas. O ***Builder*** não exige que os produtos tenham uma interface comum. Isso torna possível produzir produtos diferentes usando o mesmo processo de construção.
 
 As principais vantagens do padrão de projeto ***Builder*** são:
+
 - Construir objetos por etapas, adiando etapas de construção e possibilidade de chamadas recursivas.
 - Reutilizar o mesmo código de construção para várias representações de produtos.
 - **Princípio de Responsabilidade Única**: o código de construção do objeto é isolado da lógica de negócio.
 
 No entanto, o maior desafio é a complexidade do código conforme existam múltiplas classes novas.
-

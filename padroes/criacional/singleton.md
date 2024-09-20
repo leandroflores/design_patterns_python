@@ -4,50 +4,46 @@
 
 O ***Singleton*** é um **padrão de projeto criacional** que permite que uma classe possua uma instância única, fornecendo acesso global à essa instância para os clientes.
 
-<html>
-<img src="../../imagens/criacional/singleton/singleton_1.png" width="400" alt="Singleton">
-<p><b>Figura 1</b>: Representação visual do padrão <i>Singleton</i>.</p>
-</html>
+A Figura 1 apresenta uma metáfora com o cenário da aplicação do padrão ***Singleton***.
+
+![Exemplo do padrão ***Singleton***](../../imagens/criacional/singleton/singleton_1.png)
+**Figura 1:** Representação visual do padrão ***Singleton***.
 
 ## Problema
 
-O padrão ***Singleton*** resolve dois problemas de uma vez, violando o **Princípio de Responsabilidade Única**.
-
-O padrão ***Singleton*** garante que uma classe possua apenas uma única instância. Esse cenário é aplicado especialmente em casos que se faz necessário o acesso à determinado recurso compartilhado. Como exemplo de aplicação, é possível citar arquivos de texto e sessões de banco de dados.
+O padrão ***Singleton*** garante que uma classe possua apenas uma única instância. Esse cenário é aplicado especialmente em casos que se faz necessário o acesso à determinado recurso compartilhado. Como exemplo de aplicação, é possível citar arquivos extensos de texto e sessões de banco de dados.
 
 O padrão ***Singleton*** também fornece um ponto de acesso global para a única instância. Uma forma de proteção é a classe ***Singleton*** acoplar o valor da instância para evitar sobrescrita e exposição dos valores, além de impedir que o código fique espalhado pelo código.
 
+A Figura 2 apresenta um exemplo de cliente consultando a instância única do padrão ***Singleton***.
 
-<html>
-<img src="../../imagens/criacional/singleton/singleton_2.png" width="400" alt="Factory Method">
-<p><b>Figura 2</b>: Clientes consultam à uma única instância com <i>Singleton</i>.</p>
-</html>
+![Clientes no padrão ***Singleton***](../../imagens/criacional/singleton/singleton_2.png)
+**Figura 2:** Clientes consultando instância única do padrão ***Singleton***.
 
+No entanto, o padrão ***Singleton*** resolve dois problemas de uma vez, violando o **Princípio de Responsabilidade Única**.
 
 ## Solução
 
-A solução proposta pelo padrão ***Singleton*** apresenta a definição de um construtor padrão privado, evitando a instanciação direta pelo construtor pelo cliente.
+A solução proposta pelo padrão ***Singleton*** apresenta a definição de um construtor padrão privado, evitando a instanciação de objetos diretamente pelo construtor a partir do código cliente.
 
-Além disso, um método estático de criação que atua como construtor. Este método chama o construtor privado, instancia o objeto e salvo em um atributo estático, armazenando esse objeto em *cache* e retornando esse objeto para outras chamadas.
+Além disso, é definido um método estático que atua como construtor. Este método chama o construtor privado, instancia o objeto e salva em um atributo estático, armazenando esse objeto em *cache* e retornando esse objeto para futuras chamadas.
 
 ## Implementação
 
-Para implementar o padrão ***Singleton*** é necessário seguir as seguintes etapas:
+Para aplicar o padrão ***Singleton*** é necessário seguir as seguintes etapas:
 
 - Adicione um atributo privado estático na classe ***Singleton***.
-- Declare um método de criação públic estático para obter a instância ***Singleton***.
-- Implemente a instanciação do objeto em sua primeira chamada e o armazene em um atributo estático, que será retornado em futuras chamadas.
+- Declare um método de criação público estático para obter a instância ***Singleton***.
+- Implemente a instanciação do objeto em sua primeira chamada e armazene o objeto em um atributo estático, que será retornado em futuras chamadas.
 - Deixe o construtor privado, impedindo chamadas de fora da classe ***Singleton***.
 - Em todas as chamadas pelo **Cliente**, substitua a chamada do construtor pela chamada do método estático da classe ***Singleton***.
 
-A Figura 2 apresenta o diagrama com a solução do padrão ***Singleton***.
+A Figura 3 apresenta o diagrama com a solução do padrão ***Singleton***.
 
-<html>
-<img src="../../imagens/criacional/singleton/singleton_3.png" width="350" alt="Singleton">
-<p><b>Figura 2</b>: Diagrama com a definição do <i>Singleton</i>.</p>
-</html>
+![Arquitetura ***Singleton***](../../imagens/criacional/singleton/singleton_3.png)
+**Figura 3:** Arquitetura do padrão ***Singleton***.
 
-A classe ***Singleton*** declara o método estático que retorna sempre a instância única. O construtor deve ser privado para não ser chamado diretamente pelo **Cliente**. O acesso ao objeto só é possível pelo método estático.
+A classe ***Singleton*** declara o método estático que retorna a instância única da classe. O construtor deve ser privado para não ser chamado fora da classe ***Singleton***. O acesso ao objeto só é possível pelo método estático.
 
 A implementação em Python segue abaixo:
 
@@ -131,20 +127,20 @@ Nesse caso, a instância é inicializada uma única vez, e essa instância únic
 
 ## Discussão
 
-O padrão ***Singleton*** é direcionado para contextos em que seu programa precisa de uma única instância disponível para todos os clientes. Outra razão é a necessidade de existir um controle mais restrito sobre o acesso à variáveis globais.
+O padrão ***Singleton*** é voltados para contextos em que seu programa precisa de uma única instância disponível para todos os clientes. Outra razão é a necessidade de existir um controle mais restrito sobre o acesso à variáveis globais.
 
 Dentre os pontos positivos da aplicação do ***Singleton*** temos:
-  - Certeza que uma classe terá somente uma única instância.
-  - Ponto de acesso global para a instância.
-  - Objeto inicializado somente na primeira chamada do método.
+
+- Certeza que uma classe terá somente uma única instância.
+- Ponto de acesso global para a instância.
+- Objeto inicializado somente na primeira chamada do método.
 
 E entre os pontos negativos temos:
-  - Não segue o princípio de responsabilidade única, resolvendo dois problemas de uma vez.
-  - Pode mascarar um *design* ineficiente, quando os componentes do programa sabem muito sobre cada um.
-  - Requer tratamento especial em um ambiente *multithreaded* para que múltiplas *threads* não possam criar vários objetos.
-  - Dificuldade em fazer testes unitários.
 
-
+- Não segue o princípio de responsabilidade única, resolvendo dois problemas de uma vez.
+- Pode mascarar um *design* ineficiente, quando os componentes do programa sabem muito sobre cada um.
+- Requer tratamento especial em um ambiente *multithreaded*, para que múltiplas *threads* não possam criar vários objetos.
+- Dificuldade em fazer testes unitários.
 
 ## Conclusão
 

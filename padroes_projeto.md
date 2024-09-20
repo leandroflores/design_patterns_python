@@ -1,6 +1,6 @@
 # Padrões de Projeto
 
-Este repositório tem como objetivo apresentar uma visão geral sobre o conceito de **padrões de projeto**. Como fonte principal foi usado o seguinte endereço: https://refactoring.guru/pt-br/design-patterns/.
+Este repositório tem como objetivo apresentar uma visão geral sobre o conceito de **padrões de projeto**. Como fonte principal e as imagens foram retiradas do seguinte endereço: <https://refactoring.guru/pt-br/design-patterns/>.
 
 ## Introdução
 
@@ -24,7 +24,7 @@ A definição formal de um padrão podem incluir ainda aplicabilidade, etapas de
 
 Os **padrões de projeto** foram soluções propostas para problemas recorrentes em projetos orientados a objetos. Em resumo, os padrões foram propostas a medida que se identificaram problemas comuns de arquitetura de software em contextos completamente distintos.
 
-O conceito padrões foi primeiramente descrito por Christopher Alexander em seu livro `A Pattern Language` em 1977. O livro apresenta uma linguagem de padrões para o projeto de um ambiente urbano. 
+O conceito padrões foi primeiramente descrito por Christopher Alexander em seu livro `A Pattern Language` em 1977. O livro apresenta uma linguagem de padrões para o projeto de um ambiente urbano.
 
 Para o contexto de software, o conceito de padrões foi introduzido por Erich Gamma, John Vlissides, Ralph Johnson e Richard Helm, na publicação de `Design Patterns: Elements of Reusable Object-Oriented Software` em outubro de 1994. O livro apresenta 23 padrões para problemas distintos em projetos orientado a objetos. A publicação foi um sucesso, passando a ser conhecido como "o livro da Gangue dos Quatro (*Gang of Four*)", sendo abreviado para o "livro do GoF".
 
@@ -42,7 +42,7 @@ Alguns argumentos contra os padrões de projeto foram apresentados, incluindo co
 
 ## Classificação dos Padrões
 
-Os padrões de projeto se diferenciam por complexidade, detalhamento e aplicabilidade ao sistema. 
+Os padrões de projeto se diferenciam por complexidade, detalhamento e aplicabilidade ao sistema.
 
 Uma classificação possível é em relação ao nível:
 

@@ -6,11 +6,11 @@ O ***Factory Method*** (método fábrica) é um **padrão de projeto criacional*
 
 ## Problema
 
-Considere o seguinte cenário: existe uma aplicação de logística criada que lida com apenas o transporte por caminhões. A maior parte do código fica na classe `Caminhão`. A aplicação fica popular e passa a ser requisitada para a logística marítima.
+Considere o seguinte cenário: existe uma aplicação de logística que lida apenas com o transporte por meio de caminhões. A maior parte do código fica na classe `Caminhão`. A aplicação fica popular e passa a ser requisitada para a logística marítima.
 
-A maior parte do código é altamente acoplada à classe `Caminhão`. Adicionar a classe `Navio` exige alteração em toda a base do código. Além disso, para todo eventual novo meio de transporte é necessário fazer alterações novamente.
+A maior parte do código é altamente acoplada à classe `Caminhão`. Adicionar a classe `Navio` exige alteração em toda a base do código. Além disso, para todo eventual novo meio de transporte é necessário fazer repetidas alterações.
 
-Como resultado, o código-fonte fica sujo, repleto de condicionais que alteram o fluxo de execução, dependendo da classe de objetos de transporte.
+Como resultado, o código-fonte fica confuso, repleto de condicionais que alteram o fluxo de execução, dependendo da classe de objetos de transporte.
 
 ## Solução
 
@@ -22,37 +22,31 @@ Porém, existe uma limitação: só é possível retornar tipos diferentes de pr
 
 No exemplo de logística, uma refatoração seria com as classes `Caminhão` e `Navio` implementando a interface `Transporte`, que define o método abstrato `transportar`. Cada classe implemente o método de acordo com sua regra de negócio própria.
 
-A imagem a seguir apresenta a arquitetura apresentada para a solução:
+A Figura 1 apresenta a solução apresentada para o problema de logística.
 
-A imagem apresenta a visão geral do ***Factory Method***:
+![Solução com ***Factory Method***](../../imagens/criacional/factory_method/factory_method_1.png)
+**Figura 1:** Solução proposta com o padrão ***Factory Method***.
+
+## Implementação
+
+A aplicação do ***Factory Method*** é definida pelos seguintes passos:
+
+- Os **produtos** devem implementar uma mesma **interface**, que deve abstrair a declaração de métodos coerentes com o problema alvo.
+- A **classe criadora** deve possuir um **método fábrica** que retorna o tipo da **interface**.
+- No código da **classe criadora** encontre todas as referências aos construtores de **produtos**. Caso necessário, adicione o atributo de referência ao tipo para diferenciar os **criadores**.
+- Para cada tipo de **produto**, crie uma **classe criadora** respectiva que estende a **classe criadora base** e sobrescreva o **método fábrica**. Em caso de vários tipos de produtos, organize em subclasses que agrupem tipos similares.
+- Caso o **método fábrica** da **classe criadora base** ficar vazio, é recomendado torná-lo abstrato. Caso contrário, é possível deixá-lo como um comportamento padrão.
+
+A Figura 2 apresenta a arquitetura proposta pelo ***Factory Method***.
+
+![Solução com ***Factory Method***](../../imagens/criacional/factory_method/factory_method_2.png)
+**Figura 2:** Arquitetura do padrão ***Factory Method***.
 
 A interface *Product* descreve um padrão comum à todos os objetos que podem ser produzidos pelo *Creator*, no exemplo, o método *doStuff()*. Os **Produtos Concretos** são implementações diferentes da interface do **Produto**.
 
 A classe *Creator* representa o **Criador**, que declara o método fábrica responsável por retornar novos objetos do produto. O tipo de retorno do método *createProduct()* deve ser a interface *Product*. O método *createProduct()* pode ser declarado como abstrato para forçar as subclasses a implementarem sua própria versão.
 
 Os **Criadores Concretos** sobrescrevem o método fábrica base para retornar um tipo diferente de **Produto**. O método fábrica não precisa retornar novas instâncias todo o tempo, mas retornar objetos armazenados em *cache* ou de outra fonte.
-
-<html>
-<img src="../../imagens/criacional/factory_method/factory_method_1.png" width="400" alt="Factory Method">
-<p><b>Figura 1</b>: Solução proposta com o <i>Factory Method</i>.</p>
-</html>
-
-## Implementação
-
-A implementação do ***Factory Method*** não é definida por um algoritmo, mas pode ser observada por alguns passos:
-
-- Os **produtos** devem implementar uma **mesma interface**, que deve abstrair a declaração de métodos coerentes com o problema alvo.
-- A **classe criadora** deve possuir um **método fábrica** que retorna o tipo da **interface**.
-- No código da **classe criadora** encontre todas as referências aos construtores de **produtos**. Caso necessário, adicione o atributo de referência ao tipo para diferenciar os **criadores**.
-- Para cada tipo de **produto**, crie uma **classe criadora** respectiva que estende a **classe criadora base** e sobrescreva o **método fábrica**. Em caso de vários tipos de produtos, organize em subclasses que agrupem tipos similares.
-- Caso o **método fábrica** da **classe criadora base** ficar vazio, é recomendado torná-lo abstrato. Caso contrário, é possível deixá-lo com um comportamento padrão.
-
-A Figura 2 apresenta a arquitetura proposta pelo ***Factory Method***:
-
-<html>
-<img src="../../imagens/criacional/factory_method/factory_method_2.png" width="400" alt="Factory Method">
-<p><b>Figura 2</b>: Diagrama com a definição do <i>Factory Method</i>.</p>
-</html>
 
 Portanto, com o ***Factory Method*** é definido um **método fábrica** para a instanciação de objetos ao invés de chamadas diretas para os construtores. A definição classe em Python é apresentada a seguir.
 
@@ -209,18 +203,18 @@ Com a refatoração, temos os seguintes benefícios:
 - **Flexibilidade**: um novo tipo de entrega exige a implementação de uma nova classe e a respectiva inclusão de código na fábrica (*DeliveryFactory*).
 - **Manutenção**: código modular, com a lógica de criação isolada na classe *DeliveryFactory*.
 
-<html>
-<img src="../../imagens/criacional/factory_method/factory_method_3.png" width="400" alt="Factory Method">
-<p><b>Figura 3</b>: Visão geral do problema e solução proposta.</p>
-</html>
+A Figura 3 apresenta a solução proposta com ***Factory Method*** para o problema de logística.
+
+![Visão Geral do Problema](../../imagens/criacional/factory_method/factory_method_3.png)
+**Figura 3:** Solução proposta com o padrão ***Factory Method***.
 
 ## Discussão
 
-O ***Factory Method*** é adequado quando não é possível saber previamente os tipos e dependências exatas dos objetos que o código deve funcionar. O ***Factory Method*** separa o código de instanciação do produto do código que utiliza o produto. Assim, é mais fácil estenter o código de construção, independendente do restante do código.
+O ***Factory Method*** é adequado quando não é possível saber previamente os tipos e dependências exatas dos objetos. O ***Factory Method*** separa o código de instanciação do produto do código que utiliza o produto. Assim, é mais fácil estenter o código de construção, independendente do restante do código.
 
-O ***Factory Method*** é adequado quando é necessário fornecer aos usuários da biblioteca uma maneira de estender componentes internos. Usualmente, a **herança** é o conceito mais apropriado para estender o comportamento padrão. A solução é reduzir o código em um único método fábrica e permitir a sobrescrita desse método pela extensão do componente.
+O ***Factory Method*** é indicado quando é necessário fornecer aos usuários da biblioteca uma maneira de estender componentes internos. Usualmente, a **herança** é o conceito mais apropriado para estender o comportamento padrão. A solução é reduzir o código em um único método fábrica e permitir a sobrescrita desse método pela extensão do componente.
 
-O ***Factory Method*** é útil para economizar recursos do sistema reutilizando objetos existentes. Requisito comum em sistemas com conexões com banco de dados, arquivos extensos de texto, etc. A abstração da instanciação de objetos extensos e a reutilização desses objetos é conveniente com o uso do método fábrica.
+O ***Factory Method*** é útil para economizar recursos do sistema reutilizando objetos existentes. Requisito comum em sistemas como conexões com banco de dados e arquivos extensos de texto. A abstração da instanciação de objetos extensos e a reutilização desses objetos é conveniente com o uso do método fábrica.
 
 Como benefícios é possivel destacar:
 
@@ -232,5 +226,4 @@ Porém, é preciso atenção para não tornar o código mais complexo que o nece
 
 ## Conclusão
 
-O ***Factory Method*** um padrão de projeto criacional, que resolve o problema de criar objetos de produtos sem especificar suas classes concretas. O ***Factory Method*** define um método, que deve ser usado para criar objetos em vez da chamada direta ao construtor.
-
+O ***Factory Method*** é um padrão de projeto criacional, que resolve o problema de criar objetos de produtos sem especificar suas classes concretas. O ***Factory Method*** define um método, que deve ser usado para criar objetos em vez da chamada direta ao construtor.

@@ -6,12 +6,10 @@ O ***Abstract Factory*** é um **padrão de projeto criacional** que permite a p
 
 ## Problema
 
-Considere o seguinte cenário: uma loja de mobílias com a seguinte combinação: `Cadeira`, `Sofá` e `Mesa`. Cada mobília possui as seguintes variantes: `Moderno`, `Vitoriano` e `ArtDeco`.
+Considere o seguinte cenário: uma loja de mobílias com a seguinte combinação: `Cadeira`, `Sofá` e `Mesa`. Cada mobília possui as seguintes variantes: `Moderno`, `Vitoriano` e `ArtDeco`. A Figura 1 apresenta a família de produtos e suas variantes.
 
-<html>
-<img src="../../imagens/criacional/abstract_factory/abstract_factory_1.png" width="400" alt="Factory Method">
-<p><b>Figura 1</b>: Família de produtos e suas variantes.</p>
-</html>
+![Família de Produtos](../../imagens/criacional/abstract_factory/abstract_factory_1.png)
+**Figura 1:** Família de produtos e suas variantes.
 
 O objetivo é criar objetos de mobília individuais para que combinem com outros objetos da mesma família. Não faz sentido receber uma mobília com uma variante diferente da sua casa.
 
@@ -23,11 +21,10 @@ O padrão ***Abstract Factory*** declara explicitamente interfaces para cada pro
 
 O próximo passo consiste em declarar uma **Fábrica Abstrata**, que é uma **interface** responsável por declarar os respectivos **métodos** para a **criação** de cada tipo de produto que compõe a família. Os **métodos** são **abstratos** e o tipo de retorno é a **interface** definida no passo anterior.
 
+A Figura 2 apresenta exemplos de fábricas concretas para as variantes de nosso exemplo.
 
-<html>
-<img src="../../imagens/criacional/abstract_factory/abstract_factory_2.png" width="400" alt="Abstract Factory">
-<p><b>Figura 2</b>: Fábrica concreta para cada variante com <i>Abstract Factory</i>.</p>
-</html>
+![Fábricas Concretas](../../imagens/criacional/abstract_factory/abstract_factory_2.png)
+**Figura 2:** Fábrica concreta para cada variante com ***Abstract Factory***.
 
 Para cada variante de uma família de produtos é necessário criar uma classe fábrica respectiva, que deve estender a **Fábrica Abstrata**. Uma fábrica é uma classe que retornar produtos de um tipo específico.
 
@@ -37,7 +34,7 @@ Imagine que o cliente quer a produção de uma cadeira. O cliente não precisa s
 
 ## Implementação
 
-A implementação do ***Abstract Factory*** não é definida por um algoritmo, mas pode ser observada por alguns passos:
+A aplicação do padrão ***Abstract Factory*** não é definida por um algoritmo, mas pode ser descrita pelos seguintes passos:
 
 - Os **Produtos Abstratos** declaram interfaces para um conjunto de produtos distintos, mas relacionados que compõe uma família de produtos.
 - Os **Produtos Concretos** são implementações de um **Produto Abstrato**, agrupados por variantes. Cada **Produto Abstrato** deve possuir todas suas possíveis variantes implementadas.
@@ -46,11 +43,8 @@ A implementação do ***Abstract Factory*** não é definida por um algoritmo, m
 
 A Figura 3 apresenta a solução arquitetural proposta pelo ***Abstract Factory***.
 
-<html>
-<img src="../../imagens/criacional/abstract_factory/abstract_factory_3.png" width="400" alt="Abstract Factory">
-<p><b>Figura 3</b>: Arquitetura do <i>Abstract Factory</i>.</p>
-</html>
-
+![Arquitetura do ***Abstract Factory***](../../imagens/criacional/abstract_factory/abstract_factory_3.png)
+**Figura 3:** Arquitetura do padrão ***Abstract Factory***.
 
 Neste cenário, apesar das **fábricas concretas** retornarem produtos concretos, as assinaturas dos métodos retornar um tipo abstrato de produtos. Assim, o código cliente não fica ligado à uma variante específica, mas a qualquer variante do respectivo produto.
 
@@ -133,7 +127,6 @@ def client_code(factory: AbstractyFactory) -> None:
 
 client_code(ConcreteFactory1())
 client_code(ConcreteFactory2())
-...
 
 ```
 
@@ -248,8 +241,6 @@ class MongoDBFactory(DBFactory):
         return MongoDBCommand()
 
 
-
-
 def app():
     db = "MongoDB"
 
@@ -267,7 +258,7 @@ def app():
 
 ```
 
-O código apresentado apresenta mais flexibilidade para novos tipos de banco de dados. O código fica mais organizado, com separação de responsabilidades e execução de comandos para cada tipo de banco. 
+O código apresentado apresenta mais flexibilidade para novos tipos de banco de dados. O código fica mais organizado, com separação de responsabilidades e execução de comandos para cada tipo de banco.
 
 ## Aplicabilidade
 
@@ -278,6 +269,7 @@ Considere implementar o ***Abstract Factory*** quando existe uma classe com um c
 ## Discussão
 
 Dentre as principais vantagens:
+
 - **Compatibilidade** entre os **produtos** resultantes da **fábrica**.
 - **Menor acoplamento** entre os produtos concretos e o cliente.
 - **Princípio de Responsabilidade Única**: código de criação dos produtos em um lugar específico.
