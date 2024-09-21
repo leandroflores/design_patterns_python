@@ -1,6 +1,6 @@
 # Padrões de Projeto
 
-Este repositório tem como objetivo apresentar uma visão geral sobre o conceito de **padrões de projeto**. Como fonte principal e as imagens foram retiradas do seguinte endereço: <https://refactoring.guru/pt-br/design-patterns/>.
+Este repositório tem como objetivo apresentar uma visão geral sobre o conceito de **padrões de projeto**. Como fonte principal e todas as imagens foram retiradas do seguinte endereço: <https://refactoring.guru/pt-br/design-patterns/>.
 
 ## Introdução
 
@@ -57,12 +57,12 @@ A classificação mais conhecida é referente ao propósito, sendo possível obs
 
 ### Padrões Criacionais
 
-Os **padrões criacionais** fornecem mecanismos de **criação** de objetos, que aumentam a flexibilidade e reutilização de código. Existem cinco padrões classificados como criacionais: *Factory Method*, *Abstract Factory*, *Builder*, *Prototype* e *Singleton*.
+Os **padrões criacionais** fornecem mecanismos de **criação** de objetos, que aumentam a flexibilidade e reutilização de código. Existem cinco padrões classificados como criacionais: ***Abstract Factory***, ***Builder***, ***Factory Method***, ***Prototype*** e ***Singleton***.
 
 ### Padrões Estruturais
 
-Os **padrões estruturais** explicam como montar objetos e classes em estruturas maiores, mas ainda mantendo essas estruturas flexíveis e eficientes. Existem sete padrões classificados como estruturais: *Adpter*, *Bridge*, *Composite*, *Decorator*, *Facade*, *Flyweight* e *Proxy*
+Os **padrões estruturais** explicam como montar objetos e classes em estruturas maiores, mas ainda mantendo essas estruturas flexíveis e eficientes. Existem sete padrões classificados como estruturais: ***Adapter***, ***Bridge***, ***Composite***, ***Decorator***, ***Facade***, ***Flyweight*** e ***Proxy***.
 
 ### Padrões Comportamentais
 
-Os **padrões comportamentais** são voltados aos algoritmos e a designação de responsabilidade entre objetos. Existem dez padrões que são classificados como comportamentais: *Chain of Responsability*, *Command*, *Iterator*, *Mediator*, *Memento*, *Observer*, *State*, *Strategy*, *Template Method* e *Visitor*.
+Os **padrões comportamentais** são voltados aos algoritmos e a designação de responsabilidade entre objetos. Existem dez padrões que são classificados como comportamentais: ***Chain of Responsability***, ***Command***, ***Iterator***, ***Mediator***, ***Memento***, ***Observer***, ***State***, ***Strategy***, ***Template Method*** e ***Visitor***.

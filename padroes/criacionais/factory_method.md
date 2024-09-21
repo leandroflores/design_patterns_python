@@ -24,7 +24,7 @@ No exemplo de logística, uma refatoração seria com as classes `Caminhão` e `
 
 A Figura 1 apresenta a solução apresentada para o problema de logística.
 
-![Solução com ***Factory Method***](../../imagens/criacional/factory_method/factory_method_1.png)
+![Solução com ***Factory Method***](../../imagens/criacionais/factory_method/factory_method_1.png)
 **Figura 1:** Solução proposta com o padrão ***Factory Method***.
 
 ## Implementação
@@ -39,7 +39,7 @@ A aplicação do ***Factory Method*** é definida pelos seguintes passos:
 
 A Figura 2 apresenta a arquitetura proposta pelo ***Factory Method***.
 
-![Solução com ***Factory Method***](../../imagens/criacional/factory_method/factory_method_2.png)
+![Solução com ***Factory Method***](../../imagens/criacionais/factory_method/factory_method_2.png)
 **Figura 2:** Arquitetura do padrão ***Factory Method***.
 
 A interface *Product* descreve um padrão comum à todos os objetos que podem ser produzidos pelo *Creator*, no exemplo, o método *doStuff()*. Os **Produtos Concretos** são implementações diferentes da interface do **Produto**.
@@ -205,7 +205,7 @@ Com a refatoração, temos os seguintes benefícios:
 
 A Figura 3 apresenta a solução proposta com ***Factory Method*** para o problema de logística.
 
-![Visão Geral do Problema](../../imagens/criacional/factory_method/factory_method_3.png)
+![Visão Geral do Problema](../../imagens/criacionais/factory_method/factory_method_3.png)
 **Figura 3:** Solução proposta com o padrão ***Factory Method***.
 
 ## Discussão

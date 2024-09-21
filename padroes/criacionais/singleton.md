@@ -6,7 +6,7 @@ O ***Singleton*** é um **padrão de projeto criacional** que permite que uma cl
 
 A Figura 1 apresenta uma metáfora com o cenário da aplicação do padrão ***Singleton***.
 
-![Exemplo do padrão ***Singleton***](../../imagens/criacional/singleton/singleton_1.png)
+![Exemplo do padrão ***Singleton***](../../imagens/criacionais/singleton/singleton_1.png)
 **Figura 1:** Representação visual do padrão ***Singleton***.
 
 ## Problema
@@ -17,7 +17,7 @@ O padrão ***Singleton*** também fornece um ponto de acesso global para a únic
 
 A Figura 2 apresenta um exemplo de cliente consultando a instância única do padrão ***Singleton***.
 
-![Clientes no padrão ***Singleton***](../../imagens/criacional/singleton/singleton_2.png)
+![Clientes no padrão ***Singleton***](../../imagens/criacionais/singleton/singleton_2.png)
 **Figura 2:** Clientes consultando instância única do padrão ***Singleton***.
 
 No entanto, o padrão ***Singleton*** resolve dois problemas de uma vez, violando o **Princípio de Responsabilidade Única**.
@@ -40,7 +40,7 @@ Para aplicar o padrão ***Singleton*** é necessário seguir as seguintes etapas
 
 A Figura 3 apresenta o diagrama com a solução do padrão ***Singleton***.
 
-![Arquitetura ***Singleton***](../../imagens/criacional/singleton/singleton_3.png)
+![Arquitetura ***Singleton***](../../imagens/criacionais/singleton/singleton_3.png)
 **Figura 3:** Arquitetura do padrão ***Singleton***.
 
 A classe ***Singleton*** declara o método estático que retorna a instância única da classe. O construtor deve ser privado para não ser chamado fora da classe ***Singleton***. O acesso ao objeto só é possível pelo método estático.

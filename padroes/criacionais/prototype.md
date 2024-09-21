@@ -34,7 +34,7 @@ A aplicação do ***Prototype*** é descrito pelas seguintes etapas:
 
 A Figura 2 apresenta a arquitetura do padrão ***Prototype***.
 
-![Solução com ***Prototype***](../../imagens/criacional/prototype/prototype_2.png)
+![Solução com ***Prototype***](../../imagens/criacionais/prototype/prototype_2.png)
 **Figura 2:** Arquitetura do padrão ***Prototype***.
 
 A interface ***Prototype*** declara os métodos de clonagem. A classe **Protótipo Concreta** implementa o método de clonagem. Além da cópia dos atributos do objeto original, pode incluir a cópia específica de outros objetos relacionados. O **Cliente** pode produzir uma cópia de qualquer objeto que implementa a interface do **Protótipo**.

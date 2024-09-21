@@ -8,7 +8,7 @@ O ***Abstract Factory*** é um **padrão de projeto criacional** que permite a p
 
 Considere o seguinte cenário: uma loja de mobílias com a seguinte combinação: `Cadeira`, `Sofá` e `Mesa`. Cada mobília possui as seguintes variantes: `Moderno`, `Vitoriano` e `ArtDeco`. A Figura 1 apresenta a família de produtos e suas variantes.
 
-![Família de Produtos](../../imagens/criacional/abstract_factory/abstract_factory_1.png)
+![Família de Produtos](../../imagens/criacionais/abstract_factory/abstract_factory_1.png)
 **Figura 1:** Família de produtos e suas variantes.
 
 O objetivo é criar objetos de mobília individuais para que combinem com outros objetos da mesma família. Não faz sentido receber uma mobília com uma variante diferente da sua casa.
@@ -23,7 +23,7 @@ O próximo passo consiste em declarar uma **Fábrica Abstrata**, que é uma **in
 
 A Figura 2 apresenta exemplos de fábricas concretas para as variantes de nosso exemplo.
 
-![Fábricas Concretas](../../imagens/criacional/abstract_factory/abstract_factory_2.png)
+![Fábricas Concretas](../../imagens/criacionais/abstract_factory/abstract_factory_2.png)
 **Figura 2:** Fábrica concreta para cada variante com ***Abstract Factory***.
 
 Para cada variante de uma família de produtos é necessário criar uma classe fábrica respectiva, que deve estender a **Fábrica Abstrata**. Uma fábrica é uma classe que retornar produtos de um tipo específico.
@@ -43,7 +43,7 @@ A aplicação do padrão ***Abstract Factory*** não é definida por um algoritm
 
 A Figura 3 apresenta a solução arquitetural proposta pelo ***Abstract Factory***.
 
-![Arquitetura do ***Abstract Factory***](../../imagens/criacional/abstract_factory/abstract_factory_3.png)
+![Arquitetura do ***Abstract Factory***](../../imagens/criacionais/abstract_factory/abstract_factory_3.png)
 **Figura 3:** Arquitetura do padrão ***Abstract Factory***.
 
 Neste cenário, apesar das **fábricas concretas** retornarem produtos concretos, as assinaturas dos métodos retornar um tipo abstrato de produtos. Assim, o código cliente não fica ligado à uma variante específica, mas a qualquer variante do respectivo produto.

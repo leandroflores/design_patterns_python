@@ -8,7 +8,7 @@ O ***Builder*** é um **padrão de projeto criacional** que permite a construç�
 
 Considere um objeto complexo que necessite de uma inicialização passo a passo trabalhosa de muitos atributos e objetos agrupados. Normalmente, essa inicialização é feita por meio de parâmetros de um método construtor. Ou pior: espalhado pelo código cliente. A Figura 1 apresenta possíveis combinação para a construção de novas casas.
 
-![Exemplo ***Builder***](../../imagens/criacional/builder/builder_1.png)
+![Exemplo ***Builder***](../../imagens/criacionais/builder/builder_1.png)
 **Figura 1:** Representação de diferentes combinações possíveis para uma casa.
 
 Considere o cenário de um objeto `Casa`. Para construir uma `Casa` é preciso construir as paredes, piso, portas, janelas e o teto. No entanto, é possível um objeto `Casa` possuir jardim, piscina, garagem. A solução mais simples seria estender a classe base `Casa` e criar um subconjunto de casas com seu próprio construtor com seus parâmetros próprios. No entanto, isso pode resultar em um número extenso de subclasses e qualquer novo parâmetro exige uma alteração mais delicada na classe genérica da hierarquia.
@@ -38,7 +38,7 @@ A implementação do ***Builder*** pode ser organizada pelos seguintes passos:
 
 A Figura 2 apresenta o diagrama com a solução do padrão ***Builder***.
 
-![Arquitetura ***Builder***](../../imagens/criacional/builder/builder_2.png)
+![Arquitetura ***Builder***](../../imagens/criacionais/builder/builder_2.png)
 **Figura 2:** Arquitetura do padrão ***Builder***.
 
 A interface ***Builder*** deve declarar as etapas de construção do produto, que são comuns a todos os tipos de ***buiders***. ***Builders* Concretos** fornecem diferentes implementações para as etapas de construção. ***Builders* Concretos** podem produzir produtos que não seguem a interface em comum.
