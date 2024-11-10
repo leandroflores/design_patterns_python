@@ -48,8 +48,29 @@ A Figura 4 apresenta o diagrama com a solução do padrão ***Decorator***.
 
 ## Facade
 
+O ***Facade*** é um padrão de projeto estrutural que fornece uma interface simplificada para um sistema complexo de classes, biblioteca ou *framework*. Embora o padrão ***Facade*** diminua a complexidade geral, também ajuda a centralizar dependências indesejadas em um único local.
+
 A Figura 5 apresenta o diagrama com a solução do padrão ***Facade***.
 
 ![Facade](../imagens/estruturais/facade/facade_.png)
 
 **Figura 5:** Arquitetura do padrão ***Facade***.
+
+## Flyweight
+
+O ***Flyweight*** é um padrão de projeto estrutural que permite que os programas suportem grandes quantidades de objetos, mantendo baixo consumo de memória. O padrão consegue por meio do compartilhamento de partes do estado do obejeto entre vários objetos. Em outras palavras, o padrão ***Flyweight*** economiza RAM armazenando em *cache* os mesmos dados usados por objetos diferentes.
+
+A Figura 6 apresenta o diagrama com a solução do padrão ***Flyweight***.
+
+![Flyweight](../imagens/estruturais/flyweight/flyweight_.png)
+
+**Figura 6:** Arquitetura do padrão ***Flyweight***.
+
+## Proxy
+
+A Figura 7 apresenta o diagrama com a solução do padrão ***Proxy***.
+
+
+![Proxy](../imagens/estruturais/proxy/proxy_.png)
+
+**Figura 7:** Arquitetura do padrão ***Proxy***.
